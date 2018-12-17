@@ -1,4 +1,5 @@
 <?php
+
 namespace ReceiptValidator\Amazon;
 
 use ReceiptValidator\RunTimeException;
@@ -10,7 +11,7 @@ class PurchaseItem
   /**
    * purchase item info
    *
-   * @var array
+   * @var array|null
    */
   protected $_response;
 
@@ -48,6 +49,13 @@ class PurchaseItem
    * @var Carbon
    */
   protected $_cancellation_date;
+
+  /**
+   * renewal_date
+   *
+   * @var Carbon
+   */
+  protected $_renewal_date;
 
   /**
    * @return array
@@ -97,6 +105,14 @@ class PurchaseItem
     return $this->_cancellation_date;
   }
 
+  /**
+   * @return Carbon
+   */
+  public function getRenewalDate()
+  {
+    return $this->_renewal_date;
+  }
+
 
   /**
    * PurchaseItem constructor.
@@ -118,7 +134,7 @@ class PurchaseItem
    * @return PurchaseItem
    * @throws RunTimeException
    */
-  public function parseJsonResponse() : self
+  public function parseJsonResponse(): self
   {
     $jsonResponse = $this->_response;
     if (!is_array($jsonResponse)) {
@@ -138,13 +154,18 @@ class PurchaseItem
     }
 
     if (array_key_exists('purchaseDate', $jsonResponse) && !empty($jsonResponse['purchaseDate'])) {
-      $this->_purchase_date = Carbon::createFromTimestampUTC(round($jsonResponse['purchaseDate'] / 1000));
+      $this->_purchase_date = Carbon::createFromTimestampUTC(intval(round($jsonResponse['purchaseDate'] / 1000)));
     }
 
     if (array_key_exists('cancelDate', $jsonResponse) && !empty($jsonResponse['cancelDate'])) {
-      $this->_cancellation_date = Carbon::createFromTimestampUTC(round($jsonResponse['cancelDate'] / 1000));
+      $this->_cancellation_date = Carbon::createFromTimestampUTC(intval(round($jsonResponse['cancelDate'] / 1000)));
+    }
+
+    if (array_key_exists('renewalDate', $jsonResponse) && !empty($jsonResponse['renewalDate'])) {
+      $this->_renewal_date = Carbon::createFromTimestampUTC(intval(round($jsonResponse['renewalDate'] / 1000)));
     }
 
     return $this;
   }
 }
+

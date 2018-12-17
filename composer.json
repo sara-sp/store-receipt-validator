@@ -2,7 +2,7 @@
   "name": "sara-sp/store-receipt-validator",
   "description": "PHP receipt validator for Apple iTunes, Google Play and Amazon App Store",
   "type": "library",
-  "authors": 
+  "authors": [ 
     {
       "name": "Sara Pereira",
       "email": "sara.pereira@ideavity.com",

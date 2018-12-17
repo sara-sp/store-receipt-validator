@@ -1,8 +1,13 @@
 {
-  "name": "aporat/store-receipt-validator",
+  "name": "sara-sp/store-receipt-validator",
   "description": "PHP receipt validator for Apple iTunes, Google Play and Amazon App Store",
   "type": "library",
-  "authors": [
+  "authors": 
+    {
+      "name": "Sara Pereira",
+      "email": "sara.pereira@ideavity.com",
+      "homepage": "https://github.com/sara-sp"
+    },
     {
       "name": "Adar Porat",
       "email": "adar.porat@gmail.com",
@@ -21,7 +26,7 @@
     "purchase",
     "receipt"
   ],
-  "homepage": "https://github.com/aporat/store-receipt-validator",
+  "homepage": "https://github.com/sara-sp/store-receipt-validator",
   "license": [
     "Apache-2.0"
   ],
@@ -42,6 +47,6 @@
     }
   },
   "support": {
-    "issues": "https://github.com/aporat/store-receipt-validator/issues"
+    "issues": "https://github.com/sara-sp/store-receipt-validator/issues"
   }
 }
